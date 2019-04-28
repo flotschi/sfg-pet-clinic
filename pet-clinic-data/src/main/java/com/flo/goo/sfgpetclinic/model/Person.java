@@ -1,4 +1,4 @@
-package com.flo.good.sfgpetclinic.model;
+package com.flo.goo.sfgpetclinic.model;
 
 public class Person {
 
