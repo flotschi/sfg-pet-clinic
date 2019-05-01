@@ -98,7 +98,7 @@
         </dependency>
     </dependencies>
     <build>
-        <!--    <plugins>
+            <plugins>
                <plugin>
                    <groupId>ro.isdc.wro4j</groupId>
                     <artifactId>wro4j-maven-plugin</artifactId>
@@ -124,13 +124,13 @@
                         <artifactId>bootstrap</artifactId>
                         <version>${webjars-bootstrap.version}</version>
                     </dependency>
-                    <dependency>
+                  <!--  <dependency>
                         <groupId>org.mockito</groupId>
                         <artifactId>mockito-core</artifactId>
                         <version>2.23.0</version>
-                    </dependency>
+                    </dependency> -->
                 </dependencies>
           </plugin>
-        </plugins> -->
+        </plugins>
     </build>
 </project>
