@@ -30,6 +30,14 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+
+        if (count == 0) {
+            loadData();
+        }
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -40,12 +48,15 @@ public class DataLoader implements CommandLineRunner {
 
         Specialty radiology = new Specialty();
         radiology.setDescription("Radiology");
+        Specialty savedRadiology = specialtyService.save(radiology);
 
         Specialty surgery = new Specialty();
         surgery.setDescription("Surgery");
+        Specialty savedSurgery = specialtyService.save(surgery);
 
         Specialty dentistry = new Specialty();
         dentistry.setDescription("Dentistry");
+        Specialty savedDentistry = specialtyService.save(dentistry);
 
 
         Owner owner1 = new Owner();
@@ -61,7 +72,6 @@ public class DataLoader implements CommandLineRunner {
         mikesPet.setBirthDate(LocalDate.now());
         mikesPet.setName("Rosco");
         owner1.getPets().add(mikesPet);
-
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
@@ -77,8 +87,8 @@ public class DataLoader implements CommandLineRunner {
         fionasPet.setBirthDate(LocalDate.now());
         fionasPet.setName("Minky");
         owner2.getPets().add(fionasPet);
-
         ownerService.save(owner2);
+
 
         System.out.println("Loaded Owners......");
 
@@ -86,12 +96,15 @@ public class DataLoader implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
+        vet1.getSpecialties().add(savedRadiology);
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
+        vet2.getSpecialties().add(savedDentistry);
         vetService.save(vet2);
+
 
         System.out.println("Loaded Vets.......");
     }
