@@ -1,11 +1,9 @@
 package com.flo.good.sfgpetclinic.bootstrap;
 
-import com.flo.good.sfgpetclinic.model.Owner;
-import com.flo.good.sfgpetclinic.model.Pet;
-import com.flo.good.sfgpetclinic.model.PetType;
-import com.flo.good.sfgpetclinic.model.Vet;
+import com.flo.good.sfgpetclinic.model.*;
 import com.flo.good.sfgpetclinic.services.OwnerService;
 import com.flo.good.sfgpetclinic.services.PetTypeService;
+import com.flo.good.sfgpetclinic.services.SpecialtyService;
 import com.flo.good.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,12 +16,15 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
     }
 
     @Override
@@ -36,6 +37,16 @@ public class DataLoader implements CommandLineRunner {
         PetType cat = new PetType();
         dog.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Specialty radiology = new Specialty();
+        radiology.setDescription("Radiology");
+
+        Specialty surgery = new Specialty();
+        surgery.setDescription("Surgery");
+
+        Specialty dentistry = new Specialty();
+        dentistry.setDescription("Dentistry");
+
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
